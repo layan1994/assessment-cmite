@@ -1,0 +1,23 @@
+name: Scan Docker Image for Vulnerabilities
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Scan Docker image using Trivy
+        run: |
+          docker build -t mage-name .
+#command to scan the docker image
+          trivy image --exit-code 1 --severity HIGH,CRITICAL image-name 
