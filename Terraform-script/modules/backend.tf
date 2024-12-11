@@ -5,4 +5,3 @@ terraform {
     project = "gcp-project"
   }
 }
-
